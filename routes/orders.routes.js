@@ -14,8 +14,4 @@ ordersRouter.get("/orders/:id", (req, res) => {
   res.send(`Get order with ID: ${req.params.id}`);
 });
 
-ordersRouter.delete("/orders/:id", (req, res) => {
-  res.send(`Cancel order with ID: ${req.params.id}`);
-});
-
 export default ordersRouter;
