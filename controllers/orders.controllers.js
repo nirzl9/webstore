@@ -46,6 +46,6 @@ export const cancelOrder = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Failed to cancel order", error: error.message });
+      .json({ message: "Failed to cancel the order", error: error.message });
   }
 };

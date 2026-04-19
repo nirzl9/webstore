@@ -3,7 +3,7 @@ import { express } from "express";
 const ordersRouter = express.Router();
 
 ordersRouter.get("/orders", (req, res) => {
-  res.send("Get all orders");
+  res.send("Get all the orders");
 });
 
 ordersRouter.post("/orders", (req, res) => {
