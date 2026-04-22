@@ -29,10 +29,16 @@ const orderSchema = new mongoose.Schema({
     required: [true, "Quantity is required"],
   },
 
-  userId: {
+  customerId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required: [true, "User ID is required"],
+    required: [true, "Customer ID is required"],
+  },
+
+  sellerId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: [true, "Seller ID is required"],
   },
 
   sku: {

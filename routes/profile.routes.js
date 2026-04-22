@@ -6,7 +6,7 @@ import {
   createprofile,
 } from "../controllers/profile.controller.js";
 
-import authorize from "../middlewares/auth.middleware.js";
+import authorize from "../middlewares/authorize.middleware.js";
 
 const profileRouter = Router();
 

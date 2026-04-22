@@ -7,18 +7,18 @@ import {
   deleteInventory,
 } from "../controllers/inventory.controller.js";
 
-import authoriize from "../middlewares/auth.middleware.js";
+import authorize from "../middlewares/authorize.middleware.js";
 
 const inventoryRouter = Router();
 
-inventoryRouter.get("/inventory", authoriize, getInventories);
+inventoryRouter.get("/inventory", authorize, getInventories);
 
-inventoryRouter.post("/inventory", authoriize, createInventory);
+inventoryRouter.post("/inventory", authorize, createInventory);
 
-inventoryRouter.get("/inventory/:id", authoriize, getInventory);
+inventoryRouter.get("/inventory/:id", authorize, getInventory);
 
-inventoryRouter.put("/inventory/:id", authoriize, updateInventory);
+inventoryRouter.put("/inventory/:id", authorize, updateInventory);
 
-inventoryRouter.delete("/inventory/:id", authoriize, deleteInventory);
+inventoryRouter.delete("/inventory/:id", authorize, deleteInventory);
 
 export default inventoryRouter;

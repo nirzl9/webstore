@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import User from "../models/authmodel.js";
+import User from "../models/usermodel.js";
 import { JWT_SECRET, JWT_EXPIRES_IN } from "../config/env.js";
 
 const tokenBlacklist = new Set();
