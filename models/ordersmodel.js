@@ -1,4 +1,4 @@
-import mongoose, { skipMiddlewareFunction } from "mongoose";
+import { mongoose } from "mongoose";
 
 const orderSchema = new mongoose.Schema({
   productname: {
@@ -50,6 +50,12 @@ const orderSchema = new mongoose.Schema({
   orderdate: {
     type: Date,
     default: Date.now,
+  },
+
+  status: {
+    type: String,
+    enum: ["pending", "shipped", "delivered", "cancelled"],
+    default: "pending",
   },
 });
 
