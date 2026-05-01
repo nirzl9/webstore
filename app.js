@@ -19,7 +19,7 @@ app.use("/api/v1/profile", profileRouter);
 app.use("/api/v1/orders", ordersRouter);
 
 app.get("/", (req, res) => {
-  res.send("Hello, World!");
+  res.send("Welcome to the Clothing Store API");
 });
 
 app.listen(PORT, async () => {
