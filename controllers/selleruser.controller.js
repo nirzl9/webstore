@@ -11,11 +11,11 @@ export const sellerSignUp = async (req, res) => {
   session.startTransaction();
 
   try {
-    const { username, email, password } = req.body;
+    const { name, email, phone, password, address } = req.body;
 
-    const existingUser = await SellerUser.findOne({ email });
+    const existingUser = await SellerUser.findOne({ phone });
     if (existingUser) {
-      const error = new Error("Email already in use");
+      const error = new Error("Phone number already in use");
       error.status = 409;
       throw error;
     }
@@ -24,7 +24,7 @@ export const sellerSignUp = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUsers = await SellerUser.create(
-      [{ username, email, password: hashedPassword }],
+      [{ name, email, password: hashedPassword, phone, address }],
       { session },
     );
     const token = jwt.sign(
@@ -53,11 +53,11 @@ export const sellerSignUp = async (req, res) => {
 
 export const sellerSignIn = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, phone } = req.body;
 
-    const user = await SellerUser.findOne({ email });
+    const user = await SellerUser.findOne({ phone, email });
     if (!user) {
-      const error = new Error("Invalid email or Password");
+      const error = new Error("cannot find phone number or password");
       error.status = 401;
       throw error;
     }
@@ -65,7 +65,7 @@ export const sellerSignIn = async (req, res) => {
     const validPassword = await bcrypt.compare(password, user.password);
 
     if (!validPassword) {
-      const error = new Error("Invalid email or password");
+      const error = new Error("Invalid phone number or password");
       error.status = 401;
       throw error;
     }
@@ -80,8 +80,8 @@ export const sellerSignIn = async (req, res) => {
       data: { token, user },
     });
   } catch (error) {
-    res.status(400).json({
-      message: "cannot find email or password",
+    res.status(500).json({
+      message: "cannot find phone number or password",
       error: error.message,
     });
   }
