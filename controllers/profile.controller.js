@@ -13,7 +13,7 @@ export const createprofile = async (req, res) => {
 
 export const getprofile = async (req, res) => {
   try {
-    const profile = await profilemodel.findById();
+    const profile = await profilemodel.findById(req.params.id);
     res
       .status(200)
       .json({ message: "profile successfully retrieved", profile });
