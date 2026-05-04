@@ -2,7 +2,7 @@ import SellerUser from "../models/sellerusermodel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
-import { JWT_SECRET, JWT_EXPIRES_IN } from "../config/env.jsgit";
+import { JWT_SECRET, JWT_EXPIRES_IN } from "../config/env.js";
 
 const tokenBlacklist = new Set();
 
