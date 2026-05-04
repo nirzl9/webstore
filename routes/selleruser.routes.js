@@ -3,7 +3,7 @@ import {
   sellerSignUp,
   sellerSignIn,
   sellerSignOut,
-} from "../controllers/selleruser.controller";
+} from "../controllers/selleruser.controller.js";
 
 const selleruserRouter = Router();
 
