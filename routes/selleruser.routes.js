@@ -7,8 +7,10 @@ import {
 
 const selleruserRouter = Router();
 
-selleruserRouter.post("/seller/sign-up", sellerSignUp);
-selleruserRouter.post("/seller/sign-in", sellerSignIn);
-selleruserRouter.post("/seller/sign-out", sellerSignOut);
+selleruserRouter.post("/sign-up", sellerSignUp);
+
+selleruserRouter.post("/sign-in", sellerSignIn);
+
+selleruserRouter.post("/sign-out", sellerSignOut);
 
 export default selleruserRouter;
