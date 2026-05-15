@@ -41,10 +41,9 @@ const orderSchema = new mongoose.Schema({
     required: [true, "Seller ID is required"],
   },
 
-  sku: {
-    type: String,
-    required: [true, "SKU is required"],
-    unique: true,
+  price: {
+    type: Number,
+    required: [true, "Price is required"],
   },
 
   orderdate: {

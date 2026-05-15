@@ -24,11 +24,24 @@ export const sellerSignUp = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUsers = await SellerUser.create(
-      [{ name, email, password: hashedPassword, phone, address }],
+      [
+        {
+          name,
+          email,
+          password: hashedPassword,
+          phone,
+          address,
+          role: "seller",
+        },
+      ],
       { session },
     );
     const token = jwt.sign(
-      { userId: newUsers[0]._id },
+      {
+        userId: newUsers[0]._id,
+        email: newUsers[0].email,
+        role: newUsers[0].role,
+      },
       process.env.JWT_SECRET,
       {
         expiresIn: JWT_EXPIRES_IN,
@@ -70,9 +83,13 @@ export const sellerSignIn = async (req, res) => {
       throw error;
     }
 
-    const token = jwt.sign({ userId: user._id }, JWT_SECRET, {
-      expiresIn: JWT_EXPIRES_IN,
-    });
+    const token = jwt.sign(
+      { userId: user._id, email: user.email, role: user.role },
+      JWT_SECRET,
+      {
+        expiresIn: JWT_EXPIRES_IN,
+      },
+    );
 
     res.status(200).json({
       success: true,

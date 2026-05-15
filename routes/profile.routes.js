@@ -6,16 +6,21 @@ import {
   createprofile,
 } from "../controllers/profile.controller.js";
 
-import authorize from "../middlewares/authorize.middleware.js";
+import { authorize, authenticate } from "../middlewares/auth.middleware.js";
 
 const profileRouter = Router();
 
-profileRouter.get("/:id", authorize, getprofile);
+profileRouter.get("/:id", authenticate, authorize("customer"), getprofile);
 
-profileRouter.post("/", authorize, createprofile);
+profileRouter.post("/", authenticate, authorize("customer"), createprofile);
 
-profileRouter.put("/:id", authorize, updateprofile);
+profileRouter.put("/:id", authenticate, authorize("customer"), updateprofile);
 
-profileRouter.delete("/:id", authorize, deleteprofile);
+profileRouter.delete(
+  "/:id",
+  authenticate,
+  authorize("customer"),
+  deleteprofile,
+);
 
 export default profileRouter;

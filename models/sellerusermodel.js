@@ -23,6 +23,11 @@ const sellerUserSchema = new mongoose.Schema({
     type: String,
     required: [true, "Address is required"],
   },
+  role: {
+    type: String,
+    enum: ["seller"],
+    default: "seller",
+  },
   createdAt: {
     type: Date,
     default: Date.now,

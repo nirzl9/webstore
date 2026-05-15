@@ -6,24 +6,43 @@ import {
   cancelOrder,
   updateOrderStatus,
 } from "../controllers/orders.controller.js";
-import authorize from "../middlewares/authorize.middleware.js";
+import { authorize, authenticate } from "../middlewares/auth.middleware.js";
 
 const ordersRouter = Router();
 
-ordersRouter.get("/orders", authorize, getOrders);
+// Customer routes
 
-ordersRouter.post("/orders", authorize, createOrder);
+ordersRouter.get("/", authenticate, authorize("customer"), getOrders);
 
-ordersRouter.get("/orders/:id", authorize, getOrderById);
+ordersRouter.post("/", authenticate, authorize("customer"), createOrder);
 
-ordersRouter.delete("/orders/:id", authorize, cancelOrder);
+ordersRouter.get("/:id", authenticate, authorize("customer"), getOrderById);
 
-ordersRouter.get("/seller/orders", authorize, getOrders);
+ordersRouter.delete("/:id", authenticate, authorize("customer"), cancelOrder);
 
-ordersRouter.get("/seller/orders/:id", authorize, getOrderById);
+// Seller routes
 
-ordersRouter.delete("/seller/orders/:id", authorize, cancelOrder);
+ordersRouter.get("/seller", authenticate, authorize("seller"), getOrders);
 
-ordersRouter.put("/seller/orders/:id/status", authorize, updateOrderStatus);
+ordersRouter.get(
+  "/seller/:id",
+  authenticate,
+  authorize("seller"),
+  getOrderById,
+);
+
+ordersRouter.delete(
+  "/seller/:id",
+  authenticate,
+  authorize("seller"),
+  cancelOrder,
+);
+
+ordersRouter.put(
+  "/seller/:id/status",
+  authenticate,
+  authorize("seller"),
+  updateOrderStatus,
+);
 
 export default ordersRouter;

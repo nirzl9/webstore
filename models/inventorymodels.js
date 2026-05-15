@@ -39,6 +39,11 @@ const inventorySchema = new mongoose.Schema({
     type: Number,
     required: [true, "Price is required"],
   },
+  role: {
+    type: String,
+    enum: ["seller"],
+    default: "seller",
+  },
 });
 
 const Inventory = mongoose.model("Inventory", inventorySchema);
