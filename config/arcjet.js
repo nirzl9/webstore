@@ -5,7 +5,7 @@ const aj = arcjet({
   key: ARCJET_KEY,
   rules: [
     shield({ mode: "LIVE" }),
-    // Create a bot detection rule
+    // bot detection rule
     detectBot({
       mode: "LIVE",
       allow: ["CATEGORY:SEARCH_ENGINE"],
