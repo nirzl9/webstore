@@ -14,6 +14,7 @@ export const authenticate = async (req, res, next) => {
   } catch (error) {
     res.status(401).json({ message: "Unauthorized" });
   }
+  next();
 };
 
 // Middleware to check user roles
