@@ -13,9 +13,9 @@ export const sellerSignUp = async (req, res) => {
   try {
     const { name, email, phone, password, address } = req.body;
 
-    const existingUser = await SellerUser.findOne({ phone });
+    const existingUser = await SellerUser.findOne({ phone, email });
     if (existingUser) {
-      const error = new Error("Phone number already in use");
+      const error = new Error("Phone number or email already in use");
       error.status = 409;
       throw error;
     }
